@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      body {
+        background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+
+      .overlay {
+        background: rgba(0, 0, 0, 0.5);
+        min-height: 100vh;
+      }
+
+      .nav-container {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .navbar {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+      }
+
+      .mobile-menu {
+        background: rgba(255, 255, 255, 0.98);
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        visibility: hidden;
+      }
+
+      .mobile-menu.active {
+        transform: translateY(0);
+        visibility: visible;
+      }
+
+      .menu-button {
+        transition: transform 0.3s ease;
+      }
+
+      .menu-button.active {
+        transform: rotate(90deg);
+      }
+
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #2563eb;
+        transition: width 0.3s ease;
+      }
+
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .mobile-nav-link {
+        transform: translateX(-20px);
+        opacity: 0;
+        transition: all 0.3s ease;
+      }
+
+      .mobile-menu.active .mobile-nav-link {
+        transform: translateX(0);
+        opacity: 1;
+      }
+
+      .mobile-menu.active .mobile-nav-link:nth-child(1) { transition-delay: 0.1s; }
+      .mobile-menu.active .mobile-nav-link:nth-child(2) { transition-delay: 0.2s; }
+      .mobile-menu.active .mobile-nav-link:nth-child(3) { transition-delay: 0.3s; }
+      .mobile-menu.active .mobile-nav-link:nth-child(4) { transition-delay: 0.4s; }
+
+      .content-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .team-member-card {
+        transition: transform 0.3s ease;
+      }
+
+      .team-member-card:hover {
+        transform: translateY(-5px);
+      }
+
+      @media (min-width: 769px) {
+        .menu-button {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="overlay">
+      <div class="nav-container">
+        <nav class="navbar shadow-sm">
+          <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-16 items-center">
+              <div class="flex-shrink-0">
+                <a href="index.html" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors">
+                  Restaurant
+                </a>
+              </div>
+              
+              <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Home</a>
+                <a href="about.html" class="nav-link text-blue-600 font-medium">About</a>
+                <a href="menu.html" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Menu</a>
+                <a href="contact.html" class="nav-link text-gray-600 hover:text-blue-600 font-medium">Contact</a>
+              </div>
+
+              <button id="menuButton" class="menu-button md:hidden focus:outline-none">
+                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+              </button>
+            </div>
+
+            <div id="mobileMenu" class="mobile-menu md:hidden shadow-lg">
+              <div class="py-3 space-y-1">
+                <a href="index.html" class="mobile-nav-link block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">Home</a>
+                <a href="about.html" class="mobile-nav-link block px-4 py-2 text-blue-600 bg-gray-50 font-medium">About</a>
+                <a href="menu.html" class="mobile-nav-link block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">Menu</a>
+                <a href="contact.html" class="mobile-nav-link block px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-blue-600 font-medium">Contact</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <main class="min-h-screen pt-20 pb-12 px-4">
+        <div class="max-w-7xl mx-auto">
+          <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-white mb-4">About Us</h1>
+            <p class="text-gray-200 text-lg">Our story, our passion, our commitment</p>
+          </div>
+
+          <div class="grid gap-8 max-w-6xl mx-auto">
+            <div class="content-container p-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">Our Story</h2>
+              <div class="prose max-w-none text-gray-600">
+                <p class="mb-4">
+                  Founded in 2010, our restaurant has been serving delicious meals made with passion and the finest ingredients. What started as a small family business has grown into a beloved establishment in the community.
+                </p>
+                <p class="mb-4">
+                  We believe in creating memorable dining experiences through exceptional food, warm hospitality, and a welcoming atmosphere. Our chefs combine traditional techniques with modern creativity to bring you dishes that delight the senses.
+                </p>
+              </div>
+            </div>
+
+            <div class="content-container p-8 mt-8">
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">Our Values</h2>
+              <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center">
+                  <div class="text-blue-600 mb-4">
+                    <i class="fas fa-heart text-4xl"></i>
+                  </div>
+                  <h3 class="font-semibold text-gray-900 mb-2">Passion</h3>
+                  <p class="text-gray-600">We put our heart into every dish we serve</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-blue-600 mb-4">
+                    <i class="fas fa-star text-4xl"></i>
+                  </div>
+                  <h3 class="font-semibold text-gray-900 mb-2">Quality</h3>
+                  <p class="text-gray-600">Only the finest ingredients make it to your plate</p>
+                </div>
+                <div class="text-center">
+                  <div class="text-blue-600 mb-4">
+                    <i class="fas fa-users text-4xl"></i>
+                  </div>
+                  <h3 class="font-semibold text-gray-900 mb-2">Community</h3>
+                  <p class="text-gray-600">Building relationships through great food</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const menuButton = document.getElementById('menuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+          isMenuOpen = !isMenuOpen;
+          menuButton.classList.toggle('active');
+          mobileMenu.classList.toggle('active');
+          
+          document.body.style.overflow = isMenuOpen ? 'hidden' : '';
+        }
+
+        menuButton.addEventListener('click', toggleMenu);
+
+        document.addEventListener('click', function(event) {
+          const isClickInside = menuButton.contains(event.target) || mobileMenu.contains(event.target);
+          
+          if (!isClickInside && isMenuOpen) {
+            toggleMenu();
+          }
+        });
+
+        window.addEventListener('resize', function() {
+          if (window.innerWidth > 768 && isMenuOpen) {
+            toggleMenu();
+          }
+        });
+
+        const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            if (isMenuOpen) {
+              toggleMenu();
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html> 
